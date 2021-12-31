@@ -2,7 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-const MediaForm = () => {
+const MediaFormV1 = () => {
 
     const initialValues = {
       name: '',
@@ -57,9 +57,7 @@ const MediaForm = () => {
             type='text'
             name='name'
             id='name'
-            onChange={formik.handleChange}
-            value={formik.values.name}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('name')}
           />
           {
               formik.touched.name && formik.errors.name?(
@@ -72,9 +70,7 @@ const MediaForm = () => {
             type='email'
             name='email'
             id='email'
-            onChange={formik.handleChange}
-            value={formik.values.email}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('email')}
           />
           {
             formik.touched.email && formik.errors.email?(
@@ -87,9 +83,7 @@ const MediaForm = () => {
             type='text'
             name='channel'
             id='channel'
-            onChange={formik.handleChange}
-            value={formik.values.channel}
-            onBlur={formik.handleBlur}
+            {...formik.getFieldProps('channel')}
           />
           {
             formik.touched.channel && formik.errors.channel?(
@@ -104,4 +98,4 @@ const MediaForm = () => {
   )
 }
 
-export default MediaForm
+export default MediaFormV1
