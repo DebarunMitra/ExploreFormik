@@ -8,7 +8,8 @@ const MediaFormV1 = () => {
       name: '',
       email: '',
       channel: '',
-      descrption: ''
+      descrption: '',
+      origin: '',
     };
 
     const onSubmit = values => {
@@ -67,6 +68,23 @@ const MediaFormV1 = () => {
             placeholder='Write Channel Description...'
           />
           <ErrorMessage name='description' />
+        </div>
+        <div className='form-control'>
+          <label htmlFor='origin'>Channel Origin</label>
+          <Field
+            name='origin'
+          >
+          {props=>{
+            const {field, form, meta} = props;
+            return (
+              <div>
+                <input type='text' id='origin' {...field} />
+                {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+              </div>
+            )
+          }}
+        </Field>
+        <ErrorMessage name='origin' />
         </div>
           <button type='submit'>Submit</button>
         </Form>
