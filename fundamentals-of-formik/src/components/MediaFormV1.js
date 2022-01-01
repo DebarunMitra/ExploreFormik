@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import TextError from './TextError';
 
 const MediaFormV1 = () => {
 
@@ -20,7 +21,8 @@ const MediaFormV1 = () => {
       name: Yup.string().required('Required'),
       email: Yup.string().email('Invalid Email Format!').required('Required'),
       channel: Yup.string().required('Required'),
-
+      description: Yup.string().required('Required'),
+      origin: Yup.string().required('Required'),
     })
 
   // console.log(formik.values);
@@ -38,7 +40,7 @@ const MediaFormV1 = () => {
               name='name'
               id='name'
             />
-          <ErrorMessage name='name' />
+          <ErrorMessage name='name' component={TextError}/>
         </div>
         <div className='form-control'>
           <label htmlFor='email'>Email</label>
@@ -47,7 +49,7 @@ const MediaFormV1 = () => {
             name='email'
             id='email'
           />
-        <ErrorMessage name='email' />
+        <ErrorMessage name='email' component={TextError} />
         </div>
         <div className='form-control'>
           <label htmlFor='channel'>Channel</label>
@@ -57,7 +59,7 @@ const MediaFormV1 = () => {
             id='channel'
             placeholder='Favorite Channel Name'
           />
-          <ErrorMessage name='channel' />
+          <ErrorMessage name='channel' component={TextError} />
         </div>
         <div className='form-control'>
           <label htmlFor='description'>Description</label>
@@ -67,7 +69,7 @@ const MediaFormV1 = () => {
             id='description'
             placeholder='Write Channel Description...'
           />
-          <ErrorMessage name='description' />
+          <ErrorMessage name='description' component={TextError} />
         </div>
         <div className='form-control'>
           <label htmlFor='origin'>Channel Origin</label>
@@ -79,12 +81,11 @@ const MediaFormV1 = () => {
             return (
               <div>
                 <input type='text' id='origin' {...field} />
-                {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+                {meta.touched && meta.error ? <div className='error'>{meta.error}</div> : null}
               </div>
             )
           }}
         </Field>
-        <ErrorMessage name='origin' />
         </div>
           <button type='submit'>Submit</button>
         </Form>
