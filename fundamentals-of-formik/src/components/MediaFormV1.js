@@ -1,5 +1,5 @@
 import React from 'react'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
 import * as Yup from 'yup'
 import TextError from './TextError';
 
@@ -15,7 +15,8 @@ const MediaFormV1 = () => {
         youtube: '',
         instagram: ''
       },
-      phoneNumbers: ['', '']
+      phoneNumbers: ['', ''],
+      otherNumbers: [''],
     };
 
     const onSubmit = values => {
@@ -96,6 +97,7 @@ const MediaFormV1 = () => {
             )
           }}
         </Field>
+      </div>
         <div className='form-control'>
           <label htmlFor='otherChannels'>Other Channels</label>
           <Field
@@ -130,6 +132,33 @@ const MediaFormV1 = () => {
           />
           <ErrorMessage name='phoneNumbers[1]' component={TextError} />
         </div>
+        <div className='form-control'>
+          <label htmlFor='otherNumbers'>Other Numbers</label>
+          <FieldArray name='otherNumbers'>
+            {fieldsArrayProps=>{
+              const {push, remove, form} = fieldsArrayProps;
+              const {values} = form;
+              const {otherNumbers} = values;
+              return (
+                <div>
+                  {
+                    otherNumbers.map((otherNumber, index) => (
+                      <div key={index}>
+                        <Field
+                          name={`otherNumbers[${index}]`}
+                          placeholder='Add Other Numbers'
+                        />
+                      {
+                        index>0 && <button type='button' onClick={() => remove(index)}> - </button>
+                      }
+                        <button type='button' onClick={() => push('')}> + </button>
+                      </div>
+                    ))
+                  }
+                </div>
+              );
+            }}
+          </FieldArray>
         </div>
           <button type='submit'>Submit</button>
         </Form>
