@@ -14,7 +14,8 @@ const MediaFormV1 = () => {
       otherChannels: {
         youtube: '',
         instagram: ''
-      }
+      },
+      phoneNumbers: ['', '']
     };
 
     const onSubmit = values => {
@@ -30,7 +31,8 @@ const MediaFormV1 = () => {
       otherChannels: Yup.object().shape({
         youtube: Yup.string().required('Required'),
         instagram: Yup.string().required('Required')
-      })
+      }),
+      phoneNumbers: Yup.array().of(Yup.number().required('Required'))
     })
 
   // console.log(formik.values);
@@ -110,6 +112,23 @@ const MediaFormV1 = () => {
             placeholder= 'Instagram Channel Name'
           />
           <ErrorMessage name='otherChannels.instagram' component={TextError} />
+        </div>
+        <div className='form-control'>
+          <label htmlFor='phoneNumbers'>Phone Numbers</label>
+          <Field
+            type='text'
+            name='phoneNumbers[0]'
+            id='primaryPhoneNumber'
+            placeholder= 'Primary Number'
+          />
+        <ErrorMessage name='phoneNumbers[0]' component={TextError} />
+          <Field
+            type='text'
+            name='phoneNumbers[1]'
+            id='secondaryPhoneNumber'
+            placeholder= 'Secondary Number'
+          />
+          <ErrorMessage name='phoneNumbers[1]' component={TextError} />
         </div>
         </div>
           <button type='submit'>Submit</button>
