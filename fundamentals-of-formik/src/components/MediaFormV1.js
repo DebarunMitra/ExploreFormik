@@ -9,8 +9,12 @@ const MediaFormV1 = () => {
       name: '',
       email: '',
       channel: '',
-      descrption: '',
+      description: '',
       origin: '',
+      otherChannels: {
+        youtube: '',
+        instagram: ''
+      }
     };
 
     const onSubmit = values => {
@@ -23,6 +27,10 @@ const MediaFormV1 = () => {
       channel: Yup.string().required('Required'),
       description: Yup.string().required('Required'),
       origin: Yup.string().required('Required'),
+      otherChannels: Yup.object().shape({
+        youtube: Yup.string().required('Required'),
+        instagram: Yup.string().required('Required')
+      })
     })
 
   // console.log(formik.values);
@@ -86,6 +94,23 @@ const MediaFormV1 = () => {
             )
           }}
         </Field>
+        <div className='form-control'>
+          <label htmlFor='otherChannels'>Other Channels</label>
+          <Field
+            type='text'
+            name='otherChannels.youtube'
+            id='youtube'
+            placeholder= 'Youtube Channel Name'
+          />
+        <ErrorMessage name='otherChannels.youtube' component={TextError} />
+          <Field
+            type='text'
+            name='otherChannels.instagram'
+            id='instagram'
+            placeholder= 'Instagram Channel Name'
+          />
+          <ErrorMessage name='otherChannels.instagram' component={TextError} />
+        </div>
         </div>
           <button type='submit'>Submit</button>
         </Form>
