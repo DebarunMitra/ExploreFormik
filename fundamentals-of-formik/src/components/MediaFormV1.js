@@ -1,5 +1,5 @@
 import React from 'react'
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
+import { Formik, Form, Field, ErrorMessage, FieldArray, FastField } from 'formik'
 import * as Yup from 'yup'
 import TextError from './TextError';
 
@@ -84,11 +84,12 @@ const MediaFormV1 = () => {
         </div>
         <div className='form-control'>
           <label htmlFor='origin'>Channel Origin</label>
-          <Field
+          <FastField
             name='origin'
           >
           {props=>{
             const {field, form, meta} = props;
+            console.log('Origin');
             return (
               <div>
                 <input type='text' id='origin' {...field} />
@@ -96,7 +97,7 @@ const MediaFormV1 = () => {
               </div>
             )
           }}
-        </Field>
+        </FastField>
       </div>
         <div className='form-control'>
           <label htmlFor='otherChannels'>Other Channels</label>
