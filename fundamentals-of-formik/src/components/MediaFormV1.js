@@ -7,7 +7,8 @@ const MediaFormV1 = () => {
     const initialValues = {
       name: '',
       email: '',
-      channel: ''
+      channel: '',
+      descrption: ''
     };
 
     const onSubmit = values => {
@@ -17,7 +18,8 @@ const MediaFormV1 = () => {
     const validationSchema = Yup.object({
       name: Yup.string().required('Required'),
       email: Yup.string().email('Invalid Email Format!').required('Required'),
-      channel: Yup.string().required('Required')
+      channel: Yup.string().required('Required'),
+
     })
 
   // console.log(formik.values);
@@ -27,16 +29,17 @@ const MediaFormV1 = () => {
       onSubmit={onSubmit}
       validationSchema={validationSchema}
       >
-      <div className='form-control'>
         <Form>
-          <label htmlFor='name'>Name</label>
-          <Field
-            type='text'
-            name='name'
-            id='name'
-          />
-        <ErrorMessage name='name' />
-
+          <div className='form-control'>
+            <label htmlFor='name'>Name</label>
+            <Field
+              type='text'
+              name='name'
+              id='name'
+            />
+          <ErrorMessage name='name' />
+        </div>
+        <div className='form-control'>
           <label htmlFor='email'>Email</label>
           <Field
             type='email'
@@ -44,19 +47,29 @@ const MediaFormV1 = () => {
             id='email'
           />
         <ErrorMessage name='email' />
-
+        </div>
+        <div className='form-control'>
           <label htmlFor='channel'>Channel</label>
           <Field
             type='text'
             name='channel'
             id='channel'
+            placeholder='Favorite Channel Name'
           />
-
-        <ErrorMessage name='channel' />
-
+          <ErrorMessage name='channel' />
+        </div>
+        <div className='form-control'>
+          <label htmlFor='description'>Description</label>
+          <Field
+            as='textarea'
+            name='description'
+            id='description'
+            placeholder='Write Channel Description...'
+          />
+          <ErrorMessage name='description' />
+        </div>
           <button type='submit'>Submit</button>
         </Form>
-      </div>
     </Formik>
   )
 }
