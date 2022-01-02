@@ -27,7 +27,7 @@ const MediaFormV1 = () => {
       name: Yup.string().required('Required'),
       email: Yup.string().email('Invalid Email Format!').required('Required'),
       channel: Yup.string().required('Required'),
-      description: Yup.string().required('Required'),
+      // description: Yup.string().required('Required'),
       origin: Yup.string().required('Required'),
       otherChannels: Yup.object().shape({
         youtube: Yup.string().required('Required'),
@@ -36,14 +36,23 @@ const MediaFormV1 = () => {
       phoneNumbers: Yup.array().of(Yup.number().required('Required'))
     })
 
+    const validateDescription = value => {
+      let error;
+      if(!value) {
+        error = 'Required'
+      }
+      return error;
+    }
+
   // console.log(formik.values);
+  {/* validationOnChange={false} */}
+    {/* validateOnBlur={false} */}
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
-    {/* validationOnChange={false} */}
-      {/* validateOnBlur={false} */}
+
       >
         <Form>
           <div className='form-control'>
@@ -81,8 +90,9 @@ const MediaFormV1 = () => {
             name='description'
             id='description'
             placeholder='Write Channel Description...'
+            validate={validateDescription}
           />
-          <ErrorMessage name='description' component={TextError} />
+        <ErrorMessage name='description' component={TextError} />
         </div>
         <div className='form-control'>
           <label htmlFor='origin'>Channel Origin</label>
