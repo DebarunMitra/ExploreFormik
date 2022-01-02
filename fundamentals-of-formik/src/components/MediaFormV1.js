@@ -19,8 +19,9 @@ const MediaFormV1 = () => {
       otherNumbers: [''],
     };
 
-    const onSubmit = values => {
+    const onSubmit = (values, onSubmitProps) => {
       console.log(values);
+      onSubmitProps.setSubmitting(false)
     };
 
     const validationSchema = Yup.object({
@@ -175,7 +176,7 @@ const MediaFormV1 = () => {
               }}
             </FieldArray>
           </div>
-            <button type='submit' disabled={!(formik.dirty && formik.isValid)}>Submit</button>
+            <button type='submit' disabled={!(formik.dirty && formik.isValid) || formik.isSubmitting}>Submit</button>{/*formik.isSubmitting*/}
           </Form>
         )
       }}
