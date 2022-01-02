@@ -22,6 +22,7 @@ const MediaFormV1 = () => {
     const onSubmit = (values, onSubmitProps) => {
       console.log(values);
       onSubmitProps.setSubmitting(false)
+      onSubmitProps.resetForm()
     };
 
     const validationSchema = Yup.object({
@@ -54,6 +55,7 @@ const MediaFormV1 = () => {
       onSubmit={onSubmit}
       validationSchema={validationSchema}
       // validateOnMount
+      // enableReinitalize
       >
       {formik=>{
         return (
