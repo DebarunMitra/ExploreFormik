@@ -52,129 +52,133 @@ const MediaFormV1 = () => {
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
-
+      // validateOnMount
       >
-        <Form>
+      {formik=>{
+        return (
+          <Form>
+            <div className='form-control'>
+              <label htmlFor='name'>Name</label>
+              <Field
+                type='text'
+                name='name'
+                id='name'
+              />
+            <ErrorMessage name='name' component={TextError}/>
+          </div>
           <div className='form-control'>
-            <label htmlFor='name'>Name</label>
+            <label htmlFor='email'>Email</label>
+            <Field
+              type='email'
+              name='email'
+              id='email'
+            />
+          <ErrorMessage name='email' component={TextError} />
+          </div>
+          <div className='form-control'>
+            <label htmlFor='channel'>Channel</label>
             <Field
               type='text'
-              name='name'
-              id='name'
+              name='channel'
+              id='channel'
+              placeholder='Favorite Channel Name'
             />
-          <ErrorMessage name='name' component={TextError}/>
-        </div>
-        <div className='form-control'>
-          <label htmlFor='email'>Email</label>
-          <Field
-            type='email'
-            name='email'
-            id='email'
-          />
-        <ErrorMessage name='email' component={TextError} />
-        </div>
-        <div className='form-control'>
-          <label htmlFor='channel'>Channel</label>
-          <Field
-            type='text'
-            name='channel'
-            id='channel'
-            placeholder='Favorite Channel Name'
-          />
-          <ErrorMessage name='channel' component={TextError} />
-        </div>
-        <div className='form-control'>
-          <label htmlFor='description'>Description</label>
-          <Field
-            as='textarea'
-            name='description'
-            id='description'
-            placeholder='Write Channel Description...'
-            validate={validateDescription}
-          />
-        <ErrorMessage name='description' component={TextError} />
-        </div>
-        <div className='form-control'>
-          <label htmlFor='origin'>Channel Origin</label>
-          <FastField
-            name='origin'
-          >
-          {props=>{
-            const {field, form, meta} = props;
-            console.log('Origin');
-            return (
-              <div>
-                <input type='text' id='origin' {...field} />
-                {meta.touched && meta.error ? <div className='error'>{meta.error}</div> : null}
-              </div>
-            )
-          }}
-        </FastField>
-      </div>
-        <div className='form-control'>
-          <label htmlFor='otherChannels'>Other Channels</label>
-          <Field
-            type='text'
-            name='otherChannels.youtube'
-            id='youtube'
-            placeholder= 'Youtube Channel Name'
-          />
-        <ErrorMessage name='otherChannels.youtube' component={TextError} />
-          <Field
-            type='text'
-            name='otherChannels.instagram'
-            id='instagram'
-            placeholder= 'Instagram Channel Name'
-          />
-          <ErrorMessage name='otherChannels.instagram' component={TextError} />
-        </div>
-        <div className='form-control'>
-          <label htmlFor='phoneNumbers'>Phone Numbers</label>
-          <Field
-            type='text'
-            name='phoneNumbers[0]'
-            id='primaryPhoneNumber'
-            placeholder= 'Primary Number'
-          />
-        <ErrorMessage name='phoneNumbers[0]' component={TextError} />
-          <Field
-            type='text'
-            name='phoneNumbers[1]'
-            id='secondaryPhoneNumber'
-            placeholder= 'Secondary Number'
-          />
-          <ErrorMessage name='phoneNumbers[1]' component={TextError} />
-        </div>
-        <div className='form-control'>
-          <label htmlFor='otherNumbers'>Other Numbers</label>
-          <FieldArray name='otherNumbers'>
-            {fieldsArrayProps=>{
-              const {push, remove, form} = fieldsArrayProps;
-              const {values} = form;
-              const {otherNumbers} = values;
+            <ErrorMessage name='channel' component={TextError} />
+          </div>
+          <div className='form-control'>
+            <label htmlFor='description'>Description</label>
+            <Field
+              as='textarea'
+              name='description'
+              id='description'
+              placeholder='Write Channel Description...'
+              validate={validateDescription}
+            />
+          <ErrorMessage name='description' component={TextError} />
+          </div>
+          <div className='form-control'>
+            <label htmlFor='origin'>Channel Origin</label>
+            <FastField
+              name='origin'
+            >
+            {props=>{
+              const {field, form, meta} = props;
+              console.log('Origin');
               return (
                 <div>
-                  {
-                    otherNumbers.map((otherNumber, index) => (
-                      <div key={index}>
-                        <Field
-                          name={`otherNumbers[${index}]`}
-                          placeholder='Add Other Numbers'
-                        />
-                      {
-                        index>0 && <button type='button' onClick={() => remove(index)}> - </button>
-                      }
-                        <button type='button' onClick={() => push('')}> + </button>
-                      </div>
-                    ))
-                  }
+                  <input type='text' id='origin' {...field} />
+                  {meta.touched && meta.error ? <div className='error'>{meta.error}</div> : null}
                 </div>
-              );
+              )
             }}
-          </FieldArray>
+          </FastField>
         </div>
-          <button type='submit'>Submit</button>
-        </Form>
+          <div className='form-control'>
+            <label htmlFor='otherChannels'>Other Channels</label>
+            <Field
+              type='text'
+              name='otherChannels.youtube'
+              id='youtube'
+              placeholder= 'Youtube Channel Name'
+            />
+          <ErrorMessage name='otherChannels.youtube' component={TextError} />
+            <Field
+              type='text'
+              name='otherChannels.instagram'
+              id='instagram'
+              placeholder= 'Instagram Channel Name'
+            />
+            <ErrorMessage name='otherChannels.instagram' component={TextError} />
+          </div>
+          <div className='form-control'>
+            <label htmlFor='phoneNumbers'>Phone Numbers</label>
+            <Field
+              type='text'
+              name='phoneNumbers[0]'
+              id='primaryPhoneNumber'
+              placeholder= 'Primary Number'
+            />
+          <ErrorMessage name='phoneNumbers[0]' component={TextError} />
+            <Field
+              type='text'
+              name='phoneNumbers[1]'
+              id='secondaryPhoneNumber'
+              placeholder= 'Secondary Number'
+            />
+            <ErrorMessage name='phoneNumbers[1]' component={TextError} />
+          </div>
+          <div className='form-control'>
+            <label htmlFor='otherNumbers'>Other Numbers</label>
+            <FieldArray name='otherNumbers'>
+              {fieldsArrayProps=>{
+                const {push, remove, form} = fieldsArrayProps;
+                const {values} = form;
+                const {otherNumbers} = values;
+                return (
+                  <div>
+                    {
+                      otherNumbers.map((otherNumber, index) => (
+                        <div key={index}>
+                          <Field
+                            name={`otherNumbers[${index}]`}
+                            placeholder='Add Other Numbers'
+                          />
+                        {
+                          index>0 && <button type='button' onClick={() => remove(index)}> - </button>
+                        }
+                          <button type='button' onClick={() => push('')}> + </button>
+                        </div>
+                      ))
+                    }
+                  </div>
+                );
+              }}
+            </FieldArray>
+          </div>
+            <button type='submit' disabled={!(formik.dirty && formik.isValid)}>Submit</button>
+          </Form>
+        )
+      }}
     </Formik>
   )
 }
