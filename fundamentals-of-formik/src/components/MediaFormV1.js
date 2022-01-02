@@ -42,6 +42,8 @@ const MediaFormV1 = () => {
       initialValues={initialValues}
       onSubmit={onSubmit}
       validationSchema={validationSchema}
+    {/* validationOnChange={false} */}
+      {/* validateOnBlur={false} */}
       >
         <Form>
           <div className='form-control'>
