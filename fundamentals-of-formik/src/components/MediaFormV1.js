@@ -47,8 +47,7 @@ const MediaFormV1 = () => {
     }
 
   // console.log(formik.values);
-  {/* validationOnChange={false} */}
-    {/* validateOnBlur={false} */}
+  
   return (
     <Formik
       initialValues={initialValues}
@@ -56,6 +55,8 @@ const MediaFormV1 = () => {
       validationSchema={validationSchema}
       // validateOnMount
       // enableReinitalize
+      // validationOnChange={false}
+      // validateOnBlur={false}
       >
       {formik=>{
         return (
