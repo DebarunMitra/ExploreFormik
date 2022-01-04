@@ -3,11 +3,12 @@ import React from 'react'
 import './App.css';
 import MediaForm from './components/MediaForm'
 import MediaFormV1 from './components/MediaFormV1'
+import FormikContainer from './components/FormikContainer'
 
 function App() {
   return (
     <div className="App">
-      <MediaFormV1 />
+      <FormikContainer />
     </div>
   );
 }
