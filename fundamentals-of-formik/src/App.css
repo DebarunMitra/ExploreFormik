@@ -27,6 +27,14 @@ textarea {
   margin-bottom: 10px;
 }
 
+
+
+.radio-label{
+  position: relative;
+  top: -23px;
+  left: 25px;
+}
+
 .form-control {
   margin-bottom: 20px;
 }
